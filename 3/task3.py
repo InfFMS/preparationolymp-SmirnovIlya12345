@@ -55,16 +55,35 @@ for i in range(len(badname)):
         a[i]=26
 badi=-1
 badj=-1
+mini = 0
+minj = 0
+min = a[0]
+maybe=[]
+# print(a)
 def f(a):
     for i in range(0, len(a)):
+        mini=0
+        min = a[i]
+
         for j in range (i+1,len(a)):
+            # print(i,j,mini,min,a[j])
             if a[i]>a[j]:
-                badi=i
-                badj=j
-                q = a[badi]
-                a[badi] = a[badj]
-                a[badj] = q
-                return a
+                if mini==0 or(mini!=0 and min>=a[j]):
+                    min = a[j]
+                    mini = j
+                # badi=i
+                # badj=j
+
+                # q = a[badi]
+                # a[badi] = a[badj]
+                # a[badj] = q
+                # maybe.append(a)
+        if mini!=0:
+            a[mini]=a[i]
+            a[i]=min
+            return
+
+
 f(a)
 goodname=["a"]*len(badname)
 for i in range(len(badname)):
